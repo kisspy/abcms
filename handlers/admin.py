@@ -238,7 +238,13 @@ class AdminUserHandler(BaseHandler):
 
 class AdminUserAddHandler(BaseAdminMixin, BaseHandler):
     def get(self):
-        self.render('admin/user_add.html', **{})
+        users_total=User.select().count()
+        users=User.select()
+        kwargs={
+            'users':users,
+            'users_total':users_total,
+        }
+        self.render('admin/user_add.html', **kwargs)
 
 class AdminVisitHandler(BaseAdminMixin, BaseHandler):
 
