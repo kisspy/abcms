@@ -236,6 +236,9 @@ class AdminUserHandler(BaseHandler):
         }
         self.render("admin/user.html",**kwargs)
 
+class AdminUserAddHandler(BaseAdminMixin, BaseHandler):
+    def get(self):
+        self.render('admin/user_add.html', **{})
 
 class AdminVisitHandler(BaseAdminMixin, BaseHandler):
 
