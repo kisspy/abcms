@@ -13,6 +13,8 @@ from settings import MEDIA_ROOT
 import os
 import time
 
+import forms
+
 class BaseAdminMixin(object):
     #def prepare(self):
     #    pass
@@ -245,6 +247,56 @@ class AdminUserAddHandler(BaseAdminMixin, BaseHandler):
             'users_total':users_total,
         }
         self.render('admin/user_add.html', **kwargs)
+
+    @gen.coroutine
+    def post(self):
+        email = self.get_argument('email', '').strip()
+        username = self.get_argument('username', '').strip()
+        password1 = self.get_argument('password1', '').strip()
+        password2 = self.get_argument('password2', '').strip()
+
+        if password1 != password2:
+            error_msg = tornado.escape.url_escape("Password is not match!")
+            self.write(u'/user/register?error=' + error_msg)
+            return
+
+        if email == '':
+            error_msg = tornado.escape.url_escape("Email is required!")
+            self.redirect(u"/user/register?error=" + error_msg)
+            return
+        else:
+            if email.find('@')==-1:
+                error_msg = tornado.escape.url_escape("Email is invalid!")
+                self.redirect(u"/user/register?error=" + error_msg)
+
+        if not username:
+            username=email.split('@')[0]
+
+        exist,msg = yield self.exist(email=email, username=username)
+        if exist:
+            # exist user email or username
+            error_msg = u'?error=' + tornado.escape.url_escape('Login name already taken')
+            self.redirect(u'/user/register?error=' + error_msg)
+            return
+
+        if password1:
+            password = password1
+        else:
+            error_msg = u'?error=' + tornado.escape.url_escape('Password not set')
+            self.redirect(u'/user/register?error=' + error_msg)
+            return
+
+        user = {}
+        user['email'] = email
+        user['username'] = username
+        user['password'] = password
+
+        user = yield self.add_user(**user)
+        if user:
+            self.set_current_user(user)
+
+        self.redirect('/admin/user')
+        return
 
 class AdminVisitHandler(BaseAdminMixin, BaseHandler):
 

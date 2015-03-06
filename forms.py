@@ -17,3 +17,8 @@ class BaseForm(Form):
 class HelloForm(BaseForm):
   planet = TextField('name', validators=[Required()])
 
+class UserForm(BaseForm):
+    username = TextField('username', validators=[Required()])
+    email = TextField('email', validators=[Required()])
+    password1 = TextField('password1', validators=[Required()])
+    password2 = TextField('password2', validators=[Required()])
