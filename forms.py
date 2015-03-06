@@ -22,3 +22,4 @@ class UserForm(BaseForm):
     email = TextField('email', validators=[Required()])
     password1 = TextField('password1', validators=[Required()])
     password2 = TextField('password2', validators=[Required()])
+    gender = RadioField('gender', choices=[('male','male'),('female','female')], validators=[Required()])

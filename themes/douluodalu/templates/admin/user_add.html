@@ -58,20 +58,21 @@
                  <input type="hidden" name="referer" value="{{next}}" />
                  <div class="form-group">
                      <div class="label"><tt>*</tt> 登录用户名</div>
-                     <div class="field"><input name="username" value="" type="text" id="username" class="input" data-validate="required:用户登录名只能有6-20位字母、数字或者下划线构成"></div>
+                     <div class="field">{{ form.username(**{'class':"input", 'data-validate':u"required:用户登录名只能有6-20位字母、数字或者下划线构成"}) }}</div>
                  </div>
                  <div class="form-group">
                      <div class="label"><tt>*</tt> 邮件(Email)</div>
-                     <div class="field"><input name="email" value="" type="text" id="email" class="input" data-validate="required:用户登录名只能有6-20位字母、数字或者下划线构成"></div>
+                     <div class="field">{{ form.email(**{'class':"input", 'data-validate':u"required:邮件地址只能有6-20位字母、数字或者下划线构成"}) }}</div>
                  </div>
                  <div class="form-group">
                      <div class="label"><tt>*</tt> 密 码</div>
-                     <div class="field"><input name="password1" id="password1" type="password" class="input" data-validate="required:请输入6-20位字母、数字或者下划线"></div>
+                     <div class="field">{{ form.password1(**{'class':"input", 'data-validate':u"required:请输入6-20位字母、数字或者下划线"}) }}</div>
                  </div>
                  <div class="form-group">
                      <div class="label"><tt>*</tt> 确认密码</div>
-                     <div class="field"><input name="password2" id="password2" type="password" class="input" data-validate="required:请输入6-20位字母、数字或者下划线"></div>
+                     <div class="field">{{ form.password2(**{'class':"input", 'data-validate':u"required:请输入6-20位字母、数字或者下划线"}) }}</div>
                  </div>
+
                  <div class="form-group">
                     <div class="label"><tt>*</tt> 性别 </div>
                     <div class="field">
@@ -81,7 +82,6 @@
                       </div>
                     </div>
                  </div>
-
                  <div class="form-button">
                   <button class="button bg-blue" type="submit">立即注册</button>
                  </div>

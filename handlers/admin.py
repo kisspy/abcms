@@ -242,7 +242,11 @@ class AdminUserAddHandler(BaseAdminMixin, BaseHandler):
     def get(self):
         users_total=User.select().count()
         users=User.select()
+        form = forms.UserForm()
+        print form
+        print dir(form)
         kwargs={
+            'form':form,
             'users':users,
             'users_total':users_total,
         }
@@ -250,6 +254,12 @@ class AdminUserAddHandler(BaseAdminMixin, BaseHandler):
 
     @gen.coroutine
     def post(self):
+        form = forms.UserForm(self)
+        if form.validate():
+            self.write('Hello %s' % form.planet.data)
+        else:
+            self.render('index.html', form=form)
+
         email = self.get_argument('email', '').strip()
         username = self.get_argument('username', '').strip()
         password1 = self.get_argument('password1', '').strip()
