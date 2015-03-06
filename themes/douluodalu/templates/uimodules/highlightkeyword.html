@@ -1,0 +1,62 @@
+<!-- http://www.3464.com/Data/WangYeTeXiao/Html/Html_242.asp -->
+<style type="text/css">
+.highlight{background:yellow;font-weight:bold;color:#444;}
+</style>
+<script type="text/javascript">
+function encode(s){
+  return s.replace(/&/g,"&").replace(/</g,"<").replace(/>/g,">").replace(/([\\\.\*\[\]\(\)\$\^])/g,"\\$1");
+}
+function decode(s){
+  return s.replace(/\\([\\\.\*\[\]\(\)\$\^])/g,"$1").replace(/>/g,">").replace(/</g,"<").replace(/&/g,"&");
+}
+
+function highlighting(s, obj){
+	s=encode(s);
+  var t=obj.innerHTML.replace(/<span\s+class=.?highlight.?>([^<>]*)<\/span>/gi,"$1");
+  obj.innerHTML=t;
+  var counter=loopSearch(s,obj);
+  t=obj.innerHTML;
+  var r=/{searchHL}(({(?!\/searchHL})|[^{])*){\/searchHL}/g
+  t=t.replace(r,"<span class='highlight'>$1</span>");
+  obj.innerHTML=t;
+  //alert("搜索到关键词"+counter+"处")
+}
+
+function highlight(s){
+  if (s.length==0){
+    alert('搜索关键词未填写！');
+    return false;
+  }
+  s=encode(s);
+  var objs=document.getElementsByClassName("article");
+  for(i=0;i<objs.length;i++){
+    highlighting(s, objs[i])
+	}
+
+}
+function loopSearch(s,obj){
+  var counter=0;
+  if (obj.nodeType==3){
+    counter=replace(s,obj);
+    return counter;
+  }
+  for (var i=0,c;c=obj.childNodes[i];i++){
+    if (!c.className||c.className!="highlight")
+      counter+=loopSearch(s,c);
+  }
+  return counter;
+}
+function replace(s, dest){
+  var r=new RegExp(s,"g");
+  var tm=null;
+  var t=dest.nodeValue;
+  var counter=0;
+  if (tm=t.match(r)){
+    counter=tm.length;
+    t=t.replace(r,"{searchHL}"+decode(s)+"{/searchHL}")
+    dest.nodeValue=t;
+  }
+  return counter;
+}
+</script>
+<script>highlight("{{q}}")</script>

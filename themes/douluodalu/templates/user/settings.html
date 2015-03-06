@@ -1,0 +1,85 @@
+{% extends ../base.html %}
+
+{% block css.custom %}
+  <link rel="stylesheet" type="text/css" href="{{ static_url("css/home_space.css") }}" media="screen" />
+{% end %}
+
+{% block title %}修改资料{% end %}
+
+{% block content %}
+<div class="container">
+
+	<div class="line">
+		<div class="xs3">
+			<h2>账户设置</h2><a name="profile"></a>
+			<ul class="nave">
+				<li><a href="#user">用户信息</a></li>
+				<li><a href="#profile">修改昵称</a></li>
+				<li><a href="#modifypassword">修改密码</a></li>
+			</ul>
+		</div>
+		<div class="xs9">
+			<div id="settings_user" class="cnt" style="display:block">
+				<h2>用户信息</h2><a name="user"></a>
+				<table>
+					<tr><td>邮箱地址</td><td>{% if current_user['email'] %}{{current_user['email']}}{%else%}未设置{%end%}</td></tr>
+					<tr><td>昵称</td><td>{% if current_user['nickname'] %}{{current_user['nickname']}}{%else%}未设置{%end%}</td></tr>
+				</table>
+			</div>
+			<div id="settings_profile" class="cnt" style="display:none">
+				<h2>基础信息</h2><a name="profile"></a>
+				<form method="post" autocomplete="off" name="login" action="/user/settings?action=profile">
+					{% raw xsrf_form_html() %}
+					<input type="hidden" name="referer" value="{{next}}" />
+					<div class="form-group">
+						<div class="label">昵称</div>
+						<div class="field"><input type="text" id="nickname" name="nickname" class="input" autocomplete="off" size="30" class="px p_fre" tabindex="1" value="{{current_user['nickname']}}" required/></div>
+					</div>
+					<div class="form-button">
+						<button class="button bg-blue" type="submit"  value="true" tabindex="4">提交</button>
+					</div>
+				</form>
+			</div>
+			<div id="settings_modifypassword" class="cnt" style="display:none">
+				<h2>修改密码</h2><a name="modifypassword"></a>
+				<form method="post" autocomplete="off" name="login" action="/user/settings?action=modifypassword">
+					{% raw xsrf_form_html() %}
+					<input type="hidden" name="referer" value="{{next}}" />
+
+					<div class="form-group">
+						<div class="label">旧密码</div>
+						<div class="field"><input type="password" id="password0" name="password0" class="input" size="30" tabindex="1" class="px" required /></div>
+					</div>
+
+					<div class="form-group">
+						<div class="label">新密码</div>
+						<div class="field"><input type="password" id="password1" name="password1" class="input" size="30" tabindex="1" class="px" required /></div>
+					</div>
+
+					<div class="form-group">
+						<div class="label">确认新密码</div>
+						<div class="field"><input type="password" id="password2" name="password2" class="input" size="30" tabindex="1" value="" class="px" required /></div>
+					</div>
+
+					<div class="form-button">
+						<button class="button bg-blue" type="submit"  value="true" tabindex="4">提交</button>
+					</div>
+
+				</form>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+<script>
+	$(document).ready(function(){
+		$('.nave li').click(function(){
+			$('div.cnt').hide();
+			$('div.cnt').eq($(this).index()).show();
+		});
+	});
+</script>
+
+
+{% end %}

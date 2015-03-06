@@ -1,0 +1,30 @@
+{%if message%}
+  {%if show_modal %}
+  <div id="{{id}}" data-toggle="click" data-target="#{{id}}" data-mask="1" data-width="50%">
+    <div class="dialog">
+      <div class="dialog-head">
+        <span class="dialog-close close rotate-hover"></span>
+        <strong>用户注册</strong>
+      </div>
+      <div class="dialog-body">
+        {{ message.message }}
+      </div>
+      <div class="dialog-foot">
+        <button class="dialog-close button">取消</button>
+        <button class="dialog-close button bg-green">确认</button>
+      </div>
+    </div>
+  </div>
+  <script>
+    function alert_user_message_modal(){
+      var e=$('#{{id}}')
+      $showdialogs(e);
+    }
+    alert_user_message_modal();
+  </script>
+  {%else%}
+	<div class="line">
+		<div class="alert alert-blue"><span class="close rotate-hover"></span><strong>提示：</strong>{{message}}</div>
+	</div>
+  {%end%}
+{%end%}

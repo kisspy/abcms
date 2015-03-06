@@ -1,0 +1,59 @@
+﻿{% extends ../base.html %}
+
+{% block head.js %}
+{% end %}
+
+
+{% block title %}注册{% end %}
+
+{% block content %}
+
+<div class="bg">
+  {% if error %}
+  <div class="alert alert-red"><span class="close rotate-hover"></span><strong>注意：</strong>{{ error }}</div>
+  {% end %}
+
+
+          <div class="panel">
+            <div class="panel-head"><h2 class="height-large">注册账号</h2></div>
+            <div class="panel-body">
+              <form method="post" autocomplete="off" name="register" id="registerform" class="form-x" enctype="multipart/form-data" onsubmit="checksubmit();return false;" action="/user/register">
+                 {% raw xsrf_form_html() %}
+                 <input type="hidden" name="referer" value="{{next}}" />
+                 <div class="form-group">
+                     <div class="label"><tt>*</tt> 登录用户名</div>
+                     <div class="field"><input name="username" value="" type="text" id="username" class="input" data-validate="required:用户登录名只能有6-20位字母、数字或者下划线构成"></div>
+                 </div>
+                 <div class="form-group">
+                     <div class="label"><tt>*</tt> 邮件(Email)</div>
+                     <div class="field"><input name="email" value="" type="text" id="email" class="input" data-validate="required:用户登录名只能有6-20位字母、数字或者下划线构成"></div>
+                 </div>
+                 <div class="form-group">
+                     <div class="label"><tt>*</tt> 密 码</div>
+                     <div class="field"><input name="password1" id="password1" type="password" class="input" data-validate="required:请输入6-20位字母、数字或者下划线"></div>
+                 </div>
+                 <div class="form-group">
+                     <div class="label"><tt>*</tt> 确认密码</div>
+                     <div class="field"><input name="password2" id="password2" type="password" class="input" data-validate="required:请输入6-20位字母、数字或者下划线"></div>
+                 </div>
+                 <div class="form-group">
+                    <div class="label"><tt>*</tt> 性别 </div>
+                    <div class="field">
+                      <div class="button-group radio">
+                        <label class="button active"><input name="gender" value="male" checked="checked" type="radio"><span class="icon icon-check"></span> 男</label>
+                        <label class="button"><input name="gender" value="female" type="radio"><span class="icon icon-check"></span> 女</label>
+                      </div>
+                    </div>
+                 </div>
+
+                 <div class="form-button">
+                  <button class="button bg-blue" type="submit">立即注册</button>
+                 </div>
+              </form>
+            </div>
+            <div class="panel-foot"><p><a href="/user/login?next=/userstats/" class="xi2">已有帐号？现在登录</a></p></div>
+          </div>
+
+</div>
+
+{% end %}

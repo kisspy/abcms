@@ -1,0 +1,26 @@
+{% if pages > 1 %}
+<div class="view-body">
+	<ul class="pagination">
+
+		{% if pages>3 %}
+
+
+			<li><a href="{{ get_page_url(1) }}">1</a></li>
+			<li{% if previous %}><a href="{{ get_page_url(previous) }}">&laquo;</a>{% else %} class="disabled"><a>&laquo;</a></li>{% end %}
+
+			{% set page_start=max(1,page-1) %}
+			{% set page_end=min(page_start+3, pages) %}
+			{% for page_num in xrange(page_start, page_end) %}{# 1-index range #}
+			<li{% if page_num != page %}><a href="{{ get_page_url(page_num) }}">{{ page_num }}</a>{% else %} class="active"><a>{{ page_num }}</a></li>{% end %}
+			{% end %}
+			<li{% if next %}><a href="{{ get_page_url(next) }}">&raquo;</a>{% else %} class="disabled"><a>&raquo;</a></li>{% end %}
+			<li><a href="{{ get_page_url(pages) }}">{{pages}}</a></li>
+		{% else %}
+			{% for page_num in xrange(1, pages + 1) %}{# 1-index range #}
+			<li{% if page_num != page %}><a href="{{ get_page_url(page_num) }}">{{ page_num }}</a>{% else %} class="active"><span>{{ page_num }}</span></li>{% end %}
+			{% end %}
+		{%end%}
+
+	</ul>
+</div>
+{% end %}

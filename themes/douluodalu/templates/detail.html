@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}帮助{% end %}
+
+{% block body_onload %}{% end %}
+
+{% block content %}
+<div class="bg">
+  <h1>{{article.title}}</h1>
+  <div class="mark">所属目录：<b><a href="/{{book.id}}_{{chapter.id}}/" title="{{chapter.title}}" rel="category tag">{{chapter.title}}</a></b>&nbsp;&nbsp;&nbsp;&nbsp;发布时间：{% module ChineseDateTime(chapter.created_at) %}&nbsp;&nbsp;&nbsp;&nbsp;作者：唐家三少</div>
+  <div class="content">
+		<div style="padding: 15px 0px 0px 19px; width: 304px; float: left;">
+		广告
+		</div>
+		<div style="padding: 15px 19px 0px 0px; width: 304px; float: right;">
+		广告
+		</div>
+		<div style="clear: both;"></div>
+		{{article.content}}内容
+		内容
+		<div align=center>&nbsp;</div>
+		<div style="padding: 10px 0px 0px 10px; width: 340px; float: left;">
+		左边脚本广告
+		</div>
+		<div style="padding: 10px 10px 0px 0px; width: 340px; float: right;">
+		右边脚本广告
+		</div>
+		<div style="clear: both;"></div>
+		<p align="left">
+			标签： <a href="http://www.douluodalu.com.cn/tag/%e6%96%97%e7%bd%97%e5%a4%a7%e9%99%86" rel="tag">斗罗大陆</a>  <a href="http://www.douluodalu.com.cn/tag/%e6%96%97%e7%bd%97%e5%a4%a7%e9%99%86txt%e5%85%a8%e9%9b%86" rel="tag">斗罗大陆txt全集</a>  <a href="http://www.douluodalu.com.cn/tag/%e6%96%97%e7%bd%97%e5%a4%a7%e9%99%86%e5%85%a8%e6%96%87%e9%98%85%e8%af%bb" rel="tag">斗罗大陆全文阅读</a>  <a href="http://www.douluodalu.com.cn/tag/%e6%96%97%e7%bd%97%e5%a4%a7%e9%99%86%e6%bc%ab%e7%94%bb" rel="tag">斗罗大陆漫画</a>
+		</p>
+		<br />
+		<br />版权归<a href="http://www.douluodalu.com.cn/">斗罗大陆</a>作者<a href="http://www.douluodalu.com.cn/tangjiasanshao">唐家三少</a>所有，如需转载，请注明出处：<a href="http://www.douluodalu.com.cn/shilaikeqiguai/1544.html">http://www.douluodalu.com.cn/shilaikeqiguai/1544.html</a>
+		<div style="padding: 10px 0px 0px 0px;"> 分享</div>
+		<p>
+			<span>{%if next%}下一篇: <a href="/{{book.id}}_{{next.parent.id}}/{{next.id}}.html" rel="next">{{next.title}}</a>{%else%}已是最后文章{%end%}<br />
+				{%if previous%}上一篇: <a href="/{{book.id}}_{{previous.parent.id}}/{{previous.id}}.html" rel="prev">{{previous.title}}</a>{%else%}已是最新文章{%end%}<br /></span>
+		</p>
+		<a name="comments"></a>
+
+
+  </div>
+</div>
+{% end %}

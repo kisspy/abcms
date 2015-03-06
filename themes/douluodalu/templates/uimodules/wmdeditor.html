@@ -1,0 +1,43 @@
+<link rel="stylesheet" type="text/css" href="{{ static_url("wmd/wmd.css") }}" media="screen" />
+<script src="{{ static_url("wmd/wmd.js") }}"></script>
+<script src="{{ static_url("wmd/showdown.js") }}"></script>
+<style type="text/css" media="screen">
+	textarea {width:100%;margin:0;}
+	textarea{border:1px solid gray;height:100px;}
+	#content_md {height:300px;}
+	#notes-preview{
+		background-color:#e0e0e0;
+		height:inherit;
+	}
+	#notes-button-bar{
+		line-height: 1em;
+	}
+	#content_html{display:none;}
+	#notes-preview {height:300px;overflow:scroll}
+</style>
+<div class="line">
+	<div class="xb5">
+		<div id="notes-button-bar"></div>
+		<textarea id="content_md" type="text" name="content_md" value="" tabindex="{{tabindex}}">{{content_markdown}}</textarea>
+		<textarea id="content_html" type="text" name="content_html" value=""></textarea>
+	</div>
+
+	<div class="xb5">预览:
+		<div id="notes-preview" class="article"></div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	new WMDEditor({
+		input: "content_md",
+		button_bar: "notes-button-bar",
+		preview: "notes-preview",
+		output: "content_html",
+
+		modifierKeys: false,
+		autoFormatting: false,
+		tagFilter: {
+			enabled: true
+		}
+	});
+</script>

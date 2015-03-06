@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block title %}首页{% end %}
+
+{% block body_onload %}{% end %}
+
+{% block content %}
+
+
+<div class="navi">
+
+</div>
+<div class="bg">
+  <div class="mulu">
+  <p align="center">
+   <h1>{{a.title}}</h1>
+  </p>
+  <br />
+  </div>
+</div>
+	{%for chapter, articles in blist%}
+	<div class="bg">
+		<div class="mulu">
+			<center>
+			<table>
+				<tbody>
+
+					<tr>
+						<td colspan="3"><center><h2>{{chapter.title}}</h2></center></td>
+					</tr>
+					<tr>
+					{%set n=0%}
+					{%for article in articles%}
+					{%if n>0 and n % 3==0%}
+					</tr><tr>
+						<td><a href="/{{a.id}}_{{chapter.id}}/{{article.id}}.html" rel="bookmark">{{article.title}}</a></td>
+					{%else%}
+						<td><a href="/{{a.id}}_{{chapter.id}}/{{article.id}}.html" rel="bookmark">{{article.title}}</a></td>
+					{%end%}
+					{%set n=n+1%}
+					{%end%}
+
+					{% set n_tds = n%3  %}
+					{%if n_tds ==1 %}
+						<td>&nbsp;</td><td>&nbsp;</td>
+					{%elif n_tds==2%}
+						<td>&nbsp;</td>
+					{%end%}
+					</tr>
+
+										</tbody></table>
+			</center>
+		</div>
+	</div>
+{%end%}
+
+
+{% end %}

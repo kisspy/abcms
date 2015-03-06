@@ -1,0 +1,334 @@
+{% extends 'user_base.html' %}
+
+{% block title %}用户首页{% end %}
+
+{% block content %}
+
+<div class="bg">
+
+  <div class="tab">
+  <div class="tab-head" style="z-index:5">
+    <ul class="tab-nav nav" style="margin-right:-2px;">
+      <li class="active"><a href="#tab-account"><div><h2>账号</h2>Account</div></a></li>
+      <li><a href="#tab-detail"><div><h2>详细</h2>Details</div></a></li>
+      <li><a href="#tab-friends"><div><h2>好友</h2>Friends</div></a></li>
+    </ul>
+  </div>
+  <div class="tab-body tab-body-bordered">
+    <div class="tab-panel active" id="tab-account">
+      <div class="line-big">
+        <div class="x4">
+          <img style="width:100%;height:120px;">
+
+          <div>
+            <ul>
+              <li>超级管理</li>
+              <li>重置账号</li>
+              <li>注销账号</li>
+             </ul>
+          </div>
+
+          </div>
+        <div class="x8">
+          <h2>系统账号</h2>
+          <p>昵称:{%if current_user['nickname']%}{{current_user['nickname']}}{%else%}未设置{%end%}</p>
+          <p>账号:{{current_user['username']}}</p>
+          <p>在线时长:1800分钟</p>
+          <p>登录记录:5次(最后一次IP:127.0.0.1</p>
+          <hr>
+          <h2>辅助账号</h2>
+          <p>手机:13800000000</p>
+          <p>邮箱:{{current_user['email']}}</p>
+          <hr>
+          <h2>账号安全</h2>
+          <p>已绑定手机:<span class="icon icon-yes"></span></p>
+          <p>已绑定邮箱:<span class="icon icon-yes"></span></p>
+          <p>已经设置密码保护:<span class="icon icon-yes"></span></p>
+          <hr>
+          <h2>统计</h2>
+          <p>好友:    500个</p>
+          <p>分组:    6个</p>
+          <p>备注:    100个</p>
+          <p>单向:    50个</p>
+          <hr>
+          <h2>动态</h2>
+          <p>我已经更新:  {{userstats}}无</p>
+          <p>好友更新:  150条, 其中签名:10条.</p>
+          <hr>
+          <h2>未处理请求</h2>
+          <p>收到的添加好友请求: 2条</p>
+          <p>等待别人确认的请求: 2条</p>
+        </div>
+      </div>
+    </div>
+    <div class="tab-panel" id="tab-detail">
+      <div class="line">
+        <div class="x8">
+          <h2>通用</h2>
+            <p>昵称:{%if current_user['nickname']%}{{current_user['nickname']}}{%else%}未设置{%end%}
+              姓名:        英文:</p>
+            <p>性别:   血型</p>
+            <p>生日:   星座:    生肖:    年龄:</p>
+            <p>语言:</p>
+            <p>主页:</p>
+            <p>邮箱:</p>
+            <p>地址:</p>
+            <p>固定电话:    移动电话:</p>
+            <hr>
+            <h2>工作</h2>
+            <p>公司:</p>
+            <p>地址:</p>
+            <p>部门:</p>
+            <p>职位(GPS):</p>
+            <p>角色:</p>
+            <hr>
+            <h2>关于</h2>
+
+            <div class="text-right">
+              <button class="button bg-blue">下载名片</button>
+            </div>
+
+        </div>
+        <div class="x4">
+            <img style="width:100%;height:120px;">
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-panel" id="tab-friends">
+      <div class="line">
+        <div class="x4"><h2 class="height-large">注册账号</h2></div>
+        <div class="x8">
+          <h2>好友列表</h2>
+          <hr>
+          <p>全部好友(最近联系)</p>
+          <table class="table">
+            <tr>
+              <td>昵称</td>
+              <td>姓名</td>
+              <td>账号</td>
+              <td>状态</td>
+              <td>认证</td>
+              <td>设置</td>
+              <td>备注</td>
+              <td>其他</td>
+             </tr>
+             <tr>
+              <td>Tom</td>
+              <td>汤姆</td>
+              <td>12345</td>
+              <td>正常</td>
+              <td>实名</td>
+              <td>阻止</td>
+              <td>IT</td>
+              <td>其他</td>
+             </tr>
+             <tr>
+              <td>Tom</td>
+              <td>汤姆</td>
+              <td>12345</td>
+              <td>正常</td>
+              <td>实名</td>
+              <td>阻止</td>
+              <td>IT</td>
+              <td>其他</td>
+             </tr>
+             <tr>
+              <td>Tom</td>
+              <td>汤姆</td>
+              <td>12345</td>
+              <td>正常</td>
+              <td>实名</td>
+              <td>阻止</td>
+              <td>IT</td>
+              <td>其他</td>
+             </tr>
+             <tr>
+              <td>Tom</td>
+              <td>汤姆</td>
+              <td>12345</td>
+              <td>正常</td>
+              <td>实名</td>
+              <td>阻止</td>
+              <td>IT</td>
+              <td>其他</td>
+             </tr>
+
+          </table>
+          <h2>分组</h2>
+          <hr>
+          <p>家人</p>
+          <table class="table">
+            <tr>
+              <td>昵称</td>
+              <td>姓名</td>
+              <td>账号</td>
+              <td>状态</td>
+              <td>认证</td>
+              <td>设置</td>
+              <td>备注</td>
+              <td>其他</td>
+             </tr>
+             <tr>
+              <td>Tom</td>
+              <td>汤姆</td>
+              <td>12345</td>
+              <td>正常</td>
+              <td>实名</td>
+              <td>阻止</td>
+              <td>IT</td>
+              <td>其他</td>
+             </tr>
+             <tr>
+              <td>Tom</td>
+              <td>汤姆</td>
+              <td>12345</td>
+              <td>正常</td>
+              <td>实名</td>
+              <td>阻止</td>
+              <td>IT</td>
+              <td>其他</td>
+             </tr>
+             <tr>
+              <td>Tom</td>
+              <td>汤姆</td>
+              <td>12345</td>
+              <td>正常</td>
+              <td>实名</td>
+              <td>阻止</td>
+              <td>IT</td>
+              <td>其他</td>
+             </tr>
+             <tr>
+              <td>Tom</td>
+              <td>汤姆</td>
+              <td>12345</td>
+              <td>正常</td>
+              <td>实名</td>
+              <td>阻止</td>
+              <td>IT</td>
+              <td>其他</td>
+             </tr>
+
+          </table>
+
+          <p>朋友</p>
+          <table class="table">
+            <tr>
+              <td>昵称</td>
+              <td>姓名</td>
+              <td>账号</td>
+              <td>状态</td>
+              <td>认证</td>
+              <td>设置</td>
+              <td>备注</td>
+              <td>其他</td>
+             </tr>
+             <tr>
+              <td>Tom</td>
+              <td>汤姆</td>
+              <td>12345</td>
+              <td>正常</td>
+              <td>实名</td>
+              <td>阻止</td>
+              <td>IT</td>
+              <td>其他</td>
+             </tr>
+             <tr>
+              <td>Tom</td>
+              <td>汤姆</td>
+              <td>12345</td>
+              <td>正常</td>
+              <td>实名</td>
+              <td>阻止</td>
+              <td>IT</td>
+              <td>其他</td>
+             </tr>
+             <tr>
+              <td>Tom</td>
+              <td>汤姆</td>
+              <td>12345</td>
+              <td>正常</td>
+              <td>实名</td>
+              <td>阻止</td>
+              <td>IT</td>
+              <td>其他</td>
+             </tr>
+             <tr>
+              <td>Tom</td>
+              <td>汤姆</td>
+              <td>12345</td>
+              <td>正常</td>
+              <td>实名</td>
+              <td>阻止</td>
+              <td>IT</td>
+              <td>其他</td>
+             </tr>
+
+          </table>
+
+          <p>同事</p>
+          <table class="table">
+            <tr>
+              <td>昵称</td>
+              <td>姓名</td>
+              <td>账号</td>
+              <td>状态</td>
+              <td>认证</td>
+              <td>设置</td>
+              <td>备注</td>
+              <td>其他</td>
+             </tr>
+             <tr>
+              <td>Tom</td>
+              <td>汤姆</td>
+              <td>12345</td>
+              <td>正常</td>
+              <td>实名</td>
+              <td>阻止</td>
+              <td>IT</td>
+              <td>其他</td>
+             </tr>
+             <tr>
+              <td>Tom</td>
+              <td>汤姆</td>
+              <td>12345</td>
+              <td>正常</td>
+              <td>实名</td>
+              <td>阻止</td>
+              <td>IT</td>
+              <td>其他</td>
+             </tr>
+             <tr>
+              <td>Tom</td>
+              <td>汤姆</td>
+              <td>12345</td>
+              <td>正常</td>
+              <td>实名</td>
+              <td>阻止</td>
+              <td>IT</td>
+              <td>其他</td>
+             </tr>
+             <tr>
+              <td>Tom</td>
+              <td>汤姆</td>
+              <td>12345</td>
+              <td>正常</td>
+              <td>实名</td>
+              <td>阻止</td>
+              <td>IT</td>
+              <td>其他</td>
+             </tr>
+
+          </table>
+
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</div>
+{% end %}

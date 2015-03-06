@@ -1,0 +1,47 @@
+﻿{% extends 'user_base.html' %}
+
+{% block css.custom %}
+{% end %}
+
+{% block title %}登录{% end %}
+
+{% block content %}
+{% if error %}<message class="warning">
+<strong>{{ error }}</strong></message>
+{% end %}
+
+<div class="bg">
+				<div class="panel">
+					<div class="panel-head"><h2 class="height-large">用户登录</h2></div>
+					<div class="panel-body">
+						<form class="form-x" method="post" autocomplete="off" name="register" id="registerform"  onsubmit="checksubmit();return false;" action="/user/login">
+							<input type="hidden" name="regsubmit" value="yes" />
+							{% raw xsrf_form_html() %}
+							<input type="hidden" name="next" value="{{next}}" />
+
+							<div class="form-group">
+								 <div class="label"><tt>*</tt> 账号:</div>
+								 <div class="field"><input id="username" name="username" type="text" value="" tabindex="1" class="input" data-validate="required:请输入你的数字账号"></div>
+							</div>
+							<div class="form-group">
+								 <div class="label"><tt>*</tt> 密码:</div>
+								 <div class="field"><input id="password" name="password" type="password" value="" tabindex="2" class="input" data-validate="required:请填写密码, 最小长度为 6 个字符"></div>
+							</div>
+							<div class="form-button">
+								<label><input type="checkbox"> 自动登录</label>
+							</div>
+
+							<hr>
+
+							<div class="form-button">
+								<button class="button bg-blue" type="submit"  value="true" tabindex="4">登录</button>
+							</div>
+
+						</form>
+
+					</div>
+					<div class="panel-foot"><p><a href="/user/register">立即注册</a> | <a href="/user/forgotpassword"  title="找回密码">找回密码</a></p></div>
+				</div>
+</div>
+
+{% end %}

@@ -1,0 +1,30 @@
+﻿{% extends ../base.html %}
+
+{% block css.custom %}
+  <link rel="stylesheet" type="text/css" href="{{ static_url("css/home_space.css") }}" media="screen" />
+{% end %}
+
+{% block title %}用户资料{% end %}
+
+{% block content %}
+
+<div class="container">
+
+	<div class="panel">
+		<div class="panel-head"><h2 class="height-large">用户登录</h2></div>
+		<div class="panel-body">
+			<h2>个人资料</h2>
+			<ul>
+				<li>昵&nbsp;&nbsp;称: {{user.nickname}}</li>
+				<li>邮&nbsp;&nbsp;箱:  保密</li>
+			</ul>
+			<h2>统计信息</h2>
+			<ul>
+				<li>发帖: {{userstats.threads_total}}</li>
+				<li>回帖: {{userstats.posts_total}}</li>
+			</ul>
+		</div>
+	</div>
+
+</div>
+{% end %}

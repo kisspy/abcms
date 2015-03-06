@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}管理{% end %}
+
+{% block body_onload %} {% end %}
+
+{% block content %}
+<div class="container">
+
+<h2>后台</h2>
+<p>当前共有用户{{users_total}}个.</p>
+
+<h2>访问记录</h2>
+<ul>
+{% for visit in visits %}
+	<li>{{visit.created_at}},{{visit.nickname}},{{visit.path}}</li>
+{% end %}
+</ul>
+
+{% module Paginator(page, page_size, results_count) %}
+</div>
+{% end %}

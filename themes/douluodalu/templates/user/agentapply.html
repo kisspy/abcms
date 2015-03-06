@@ -1,0 +1,81 @@
+{% extends ../base.html %}
+
+{% block head.js %}
+{% end %}
+
+
+{% block title %}注册{% end %}
+
+{% block content %}
+
+<div class="container">
+  {% if error %}
+  <div class="alert alert-red"><span class="close rotate-hover"></span><strong>注意：</strong>{{ error }}</div>
+  {% end %}
+
+  <div class="tab line">
+    <div class="tab-head x3" style="z-index:5">
+      <ul class="tab-nav tab-nav-y nav" style="margin-right:-2px;">
+        <li class="active"><a href="#tab-account"><div><h2>申请成为代理商</h2>请认真填写各项资料</div></a></li>
+      </ul>
+    </div>
+    <div class="tab-body tab-body-y tab-body-bordered x9">
+      <div class="tab-panel active" id="tab-account">
+
+          <div class="panel">
+            <div class="panel-head"><h2 class="height-large">申请成为代理商</h2></div>
+            <div class="panel-body">
+              <form method="post" autocomplete="off" name="register" id="registerform" class="form-x" onsubmit="checksubmit();return false;" action="/user/agentapply">
+                {% raw xsrf_form_html() %}
+                <input type="hidden" name="referer" value="{{next}}" />
+
+                <div class="form-group">
+                  <div class="label"><tt>*</tt> 真实姓名</div>
+                  <div class="field"><input name="realname" value="" type="text" id="realname" class="input" data-validate="required:用户登录名只能有6-20位字母、数字或者下划线构成"></div>
+                </div>
+                {#
+                <div class="form-group">
+                   <div class="label"><tt>*</tt> 手机号码</div>
+                   <div class="field">
+                      <input name="mobile" type="text" value="" id="mobile" class="input input-auto" data-validate="required:国内手机号码必须是11位数字">
+                      <a id="send_mobile_verify_code" class="button bg-blue">获取短信验证码</a>
+                   </div>
+                </div>
+
+               <div class="form-group">
+                 <div class="label"><tt>*</tt> 短信验证码</div>
+                 <div class="field"><input name="checkcode" id="checkcode" type="text" class="input input-auto" style="width:160px" data-validate="required:请填写你手机接收到的短信验证码"></div>
+               </div>
+               #}
+
+               <div class="form-group">
+                 <div class="label"><tt>*</tt> 管理密码</div>
+                 <div class="field"><input name="password1" id="password1" type="password" class="input" data-validate="required:请输入6-20位字母、数字或者下划线"></div>
+               </div>
+               {#
+               <div class="form-group">
+                 <div class="label"><tt>*</tt> 确认密码</div>
+                 <div class="field"><input name="password2" id="password2" type="password" class="input" data-validate="required:请输入6-20位字母、数字或者下划线"></div>
+               </div>
+               #}
+
+                <div class="form-button">
+                  <button class="button bg-blue" type="submit">提交申请</button>
+                </div>
+              </form>
+            </div>
+            <div class="panel-foot"><p><a href="/user/login?next=/user/home/">已有帐号？现在登录</a></p></div>
+          </div>
+
+
+      </div>
+
+    </div>
+  </div>
+
+
+
+
+</div>
+
+{% end %}

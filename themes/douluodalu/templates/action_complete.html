@@ -1,0 +1,40 @@
+{% extends ../base.html %}
+
+{% block head.js %}
+{% end %}
+
+
+{% block title %}{{message_title}}{% end %}
+
+{% block content %}
+
+<div class="container">
+
+  <div class="line">
+    <div id="{{id}}" data-toggle="click" data-target="#{{id}}" data-mask="1" data-width="50%">
+      <div class="dialog">
+        <div class="dialog-head">
+          <span class="dialog-close close rotate-hover"></span>
+          <strong>{{message_titile}}</strong>
+        </div>
+        <div class="dialog-body">
+          {{ message.body }}
+        </div>
+        <div class="dialog-foot">
+          <button class="dialog-close button">取消</button>
+          <button class="dialog-close button bg-green">确认</button>
+        </div>
+      </div>
+    </div>
+    <script>
+      function alert_user_message_modal(){
+        var e=$('#{{id}}')
+        $showdialogs(e);
+      }
+      alert_user_message_modal();
+    </script>
+  </div>
+
+</div>
+
+{% end %}

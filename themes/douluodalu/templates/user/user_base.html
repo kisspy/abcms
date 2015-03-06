@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<!--[if !IE]><html><![endif]--><!--[if lte IE 7]><html class="ie"><![endif]-->
+  <head>
+		<!--[if lt IE 9]>
+		<script> document.createElement("column"); document.createElement("message"); </script>
+		<![endif]-->
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, width=device-width">
+		<title>{% block title %}{% end %} - KISSPY</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <link rel="stylesheet" href="{{ static_url("css/style.css") }}">
+		<script src="{{ static_url("js/jquery-1.11.1.min.js") }}"></script>
+		{% block css.custom %}{% end %}
+		{% block head.css %}{% end %}
+		{% block head.js %}{% end %}
+  </head>
+  <body{% block body_onload %}{% end %}>
+  		<header class="wrap">
+				<div class="bg">
+					<column class="c3">
+						<a href="/" title="首页"><h2 class="sitename">{{SITENAME}}</h2></a>
+					</column>
+					<column class="c5">
+						<ul id="ks_menu" class="menu">
+							<li><a href="/">首页</a></li>
+					    <li><a href="/bbs">社区</a></li>
+					    <li><a href="/qq/qun">QQ群</a></li>
+						</ul>
+					</column>
+					<column class="c2">
+						<ul id="usertool" class="menu flr">
+							{% if current_user %}
+							<li><a href="/user/home">{{current_user['email']}}</a></li>
+							<li><a href="/user/settings">设置</a></li>
+							<li><a href="/user/logout">退出</a></li>
+							{% else %}
+					    <li><a href="/user/register">注册</a></li>
+					    <li><a href="/user/login">登录<drop>∨</drop></a></li>
+					    {% end %}
+						</ul>
+					</column>
+				</div>
+			</header>
+
+		<!--[if IE]><message class="warning">
+		<strong>请注意! </strong>如果您的IE浏览器来回切换兼容性模式后, 仍不能正常显示本站图表, 建议你更换 <a href="http://www.google.com/chrome">Google Chrome</a> 浏览器来获得更好的体验.</message>
+		<![endif]-->
+
+		{%if message%}
+		<div class="wrap">
+			<message class="warning">
+			{{ message }}
+			</message>
+		</div>
+		{%end%}
+		{% block content %}
+		{% end %}
+		<div id="line">{%module VisitorTrack()%}</div>
+		{% include user_footer.html %}
+	</body>
+</html>
+
+
