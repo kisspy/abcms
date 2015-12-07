@@ -65,7 +65,7 @@ u'第四十七集 天使罗刹',
 u'第四十八集 完美融合（大结局）'
 
 ]
-a=A.select().where(A.id==1).get()
+#a=A.select().where(A.id==1).get()
 #for title in chapters:
 #    b=B(parent= a, title=title)
 #    b.save()
@@ -83,7 +83,7 @@ with open('chapters.txt','r') as ff:
         if line[0] != '\t':
             chapter_flag=True
             chapter_title=line
-            
+
             if last_chapter_title:
                 if not articles:
                     # 当作全书的书名录入, 请注意只录一行, 不要弄多行
