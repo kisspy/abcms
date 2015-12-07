@@ -4,6 +4,7 @@ __author__ = 'Encore Hu, <huyoo353@126.com>'
 
 import os,sys
 #sys.path.insert(0,r'F:\Projects\MyProjects\abcms')
+from models import db
 from models import A,B,C
 
 def process(filepath, verbose=False):
