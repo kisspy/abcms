@@ -57,3 +57,4 @@ target/
 *.prj
 *.cmd
 *.log
+*.db
