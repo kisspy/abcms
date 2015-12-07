@@ -86,8 +86,9 @@ with open('chapters.txt','r') as ff:
 
             if last_chapter_title:
                 if not articles:
-                    # 当作全书的书名录入, 请注意只录一行, 不要弄多行
+                    # 当作全书的书名录入, 请注意只录一行, 不要弄多行, 且必须弄一行标题, 不然后面的都挂了
                     a = A(title=last_chapter_title)
+                    a.save()
                 #b=B.select().where(B.title==last_chapter_title, B.parent==a).get()
                 #for article_title in articles:
                 #    c=C(title=article_title, parent=b, content='')
