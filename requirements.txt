@@ -1,3 +1,4 @@
 tornado
 wtforms
 sqlalchemy
+peewee
