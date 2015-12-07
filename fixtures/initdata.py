@@ -55,9 +55,16 @@ def process(filepath, verbose=False):
             b=B(parent= a, title=last_chapter_title)
             b.save()
             #b=B.select().where(B.title==last_chapter_title, B.parent==a).get()
+            data_source=[]
             for article_title in articles:
-                c=C(title=article_title, parent=b, content='')
-                c.save()
+                data={
+                    'title':article_title,
+                    'parent':b,
+                    'content':'',
+                }
+                data_source.append(data)
+            with db.atomic():
+                C.insert_many(data_source).execute()
             if verbose:
                 print 'chapter_title', last_chapter_title
                 print 'articles','\n    '.join(articles)
