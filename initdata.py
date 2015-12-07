@@ -85,12 +85,15 @@ with open('chapters.txt','r') as ff:
                     # 当作全书的书名录入, 请注意只录一行, 不要弄多行, 且必须弄一行标题, 不然后面的都挂了
                     a = A(title=last_chapter_title)
                     a.save()
-                #b=B.select().where(B.title==last_chapter_title, B.parent==a).get()
-                #for article_title in articles:
-                #    c=C(title=article_title, parent=b, content='')
-                #    c.save()
-                print 'chapter_title', last_chapter_title
-                print 'articles','\n    '.join(articles)
+                else:
+                    b=B(parent= a, title=last_chapter_title)
+                    b.save()
+                    #b=B.select().where(B.title==last_chapter_title, B.parent==a).get()
+                    for article_title in articles:
+                        c=C(title=article_title, parent=b, content='')
+                        c.save()
+                    print 'chapter_title', last_chapter_title
+                    print 'articles','\n    '.join(articles)
             articles=[]
             last_chapter_title=chapter_title
         else:
