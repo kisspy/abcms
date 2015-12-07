@@ -65,10 +65,6 @@ u'第四十七集 天使罗刹',
 u'第四十八集 完美融合（大结局）'
 
 ]
-#a=A.select().where(A.id==1).get()
-#for title in chapters:
-#    b=B(parent= a, title=title)
-#    b.save()
 
 with open('chapters.txt','r') as ff:
     chapter_flag=False
